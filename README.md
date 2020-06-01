@@ -1,8 +1,12 @@
 ---
-description: >-
-  Kumpulan Tutorial Cara Menyelesaikan Wrietup Dari Mesin HackThebox Yang Sudah
-  Retired
+description: Repository Writeup Mesin Hackthebox yang sudah retired by obeysec
 ---
 
-# HackThebox
+# HackTheBox
+
+{% page-ref page="hackthebox-magic-writeup.md" %}
+
+
+
+
 

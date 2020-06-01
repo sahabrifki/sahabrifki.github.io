@@ -1,4 +1,6 @@
 # Table of contents
 
-* [HackThebox](README.md)
+* [HackTheBox](README.md)
+* [HackTheBox - Magic Writeup](hackthebox-magic-writeup.md)
+* [HackTheBox - Admirer Writeup](hackthebox-admirer-writeup.md)
 
