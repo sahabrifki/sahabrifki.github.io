@@ -2,10 +2,10 @@
 
 * [Hack The Box](README.md)
 
-## Active Machines
+## Machines <a id="htb-machines"></a>
 
-* [Magic](active-machines/hackthebox-magic-writeup.md)
-* [Blunder](active-machines/blunder.md)
+* [Magic](htb-machines/hackthebox-magic-writeup.md)
+* [Blunder](htb-machines/blunder.md)
 
 ## Retired Machines
 
