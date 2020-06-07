@@ -4,8 +4,8 @@
 
 ## Active Machines
 
-* [Blunder](active-machines/blunder.md)
 * [Magic](active-machines/hackthebox-magic-writeup.md)
+* [Blunder](active-machines/blunder.md)
 
 ## Retired Machines
 
