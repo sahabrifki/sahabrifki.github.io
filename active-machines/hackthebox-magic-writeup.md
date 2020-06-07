@@ -4,7 +4,7 @@ description: >-
   mendapatkan akses root dari mesin ini
 ---
 
-# HackTheBox - Magic Writeup
+# Magic
 
 ## Scanning Nmap
 
