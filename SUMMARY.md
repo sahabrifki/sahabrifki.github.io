@@ -4,7 +4,7 @@
 
 ## Machines <a id="htb-machines"></a>
 
-* [Magic](htb-machines/hackthebox-magic-writeup.md)
+* [Magic](htb-machines/machines-blunder.md)
 * [Blunder](htb-machines/blunder.md)
 
 ## Retired Machines
