@@ -37,7 +37,7 @@ admin' or 1=1#
 
 ![bypass login page](../.gitbook/assets/image%20%2814%29.png)
 
-Setelah berhasil melewatin halaman login dengan metode SQL injection \(Bypass Login Page\) kita langsung diredirect ke halaman  `https://10.10.10.185/upload.php`
+Setelah berhasil melewati halaman login dengan metode SQL injection \(Bypass Login Page\) kita langsung diredirect ke halaman  `https://10.10.10.185/upload.php`
 
 ![ https://10.10.10.185/upload.php](../.gitbook/assets/image%20%281%29.png)
 
