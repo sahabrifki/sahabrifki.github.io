@@ -128,3 +128,5 @@ SUCCESS: Password found!
 Use fergus:RolandDeschain to login.
 ```
 
+What next ?  please go deeper by your self. i think the hardest part is above.
+

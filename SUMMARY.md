@@ -29,5 +29,4 @@
   * [msfvenom](pentest-oscp-notes/basic-pentest-and-important-notes/msfvenom.md)
   * [windows BOF](pentest-oscp-notes/basic-pentest-and-important-notes/windows-bof.md)
   * [wireshark & tcpdump](pentest-oscp-notes/basic-pentest-and-important-notes/wireshark-and-tcpdump.md)
-  * [IMPORTANT OSCP NOTES](pentest-oscp-notes/basic-pentest-and-important-notes/important-oscp-notes.md)
 
