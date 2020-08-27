@@ -1,13 +1,32 @@
 # Table of contents
 
 * [Hack The Box](README.md)
+* [oscp note](oscp-note/README.md)
+  * [basic nmap](oscp-note/basic-nmap.md)
+  * [Decoding CLI](oscp-note/decoding-cli.md)
+  * [DNS enum](oscp-note/dns-enum.md)
+  * [iptables](oscp-note/iptables.md)
+  * [MS SQL](oscp-note/ms-sql.md)
+  * [netcat](oscp-note/netcat.md)
+  * [NFS & RPC](oscp-note/nfs-and-rpc.md)
+  * [pentest monkey](oscp-note/pentest-monkey.md)
+  * [reverse shell](oscp-note/reverse-shell.md)
+  * [SMB Enumeration](oscp-note/smb-enumeration.md)
+  * [SMTP and SNMP](oscp-note/smtp-and-snmp.md)
+  * [string manipulation](oscp-note/string-manipulation.md)
+  * [Transfer File](oscp-note/transfer-file.md)
+  * [Webmin and miniserv/0.01 Enumeration - Port 10000](oscp-note/webmin-and-miniserv-0.01-enumeration-port-10000.md)
+  * [msfvenom](oscp-note/msfvenom.md)
+  * [windows BOF](oscp-note/windows-bof.md)
+  * [wireshark & tcpdump](oscp-note/wireshark-and-tcpdump.md)
+  * [IMPORTANT OSCP NOTES](oscp-note/important-oscp-notes.md)
 
 ## Machines <a id="htb-machines"></a>
 
 ## Retired Machines
 
 * [Blunder](retired-machines/blunder.md)
-* [Magic](retired-machines/machines-blunder.md)
+* [Magic](retired-machines/magic.md)
 
 ## Pentest - OSCP Notes
 
