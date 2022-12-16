@@ -2,6 +2,6 @@
 Layout: default
 ---
 
-# [Anything About Me](./another-page.html)
+# Anything About Me
 
-Hi, My name is Muhamad Rifki, I am an security engineer. this is my blog and diary. anything should be wrote here. thanks
+Hi, My name is Muhamad Rifki, I am an security engineer who working for some industries that related to cyber security consulting. as an cyber security engineer, my task is doing some cyber security assessment like pentesting, redteaming and other that related to __hacking__ . 
