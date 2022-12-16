@@ -2,6 +2,6 @@
 Layout: default
 ---
 
-# [Anything About Me](./another-page.html).
+# [Anything About Me](./another-page.html)
 
 Hi, My name is Muhamad Rifki, I am an security engineer. this is my blog and diary. anything should be wrote here. thanks
