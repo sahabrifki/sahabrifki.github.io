@@ -12,19 +12,22 @@ Hi, My name is Muhamad Rifki, I am an security engineer who working for some ind
 
 
 ## Web Application Pentest
-
+-- Running On Maintenance --
 
 ## Reverse Engineering Mobile
-
+-- Running On Maintenance --
 
 ## Reverse Engineering Binary (BinEx)
-
+-- Running On Maintenance --
 
 ## Mobile Apps Pentesting
-
+-- Running On Maintenance --
 
 ## Learning Methodology
-
+-- Running On Maintenance --
 
 ## CTF Walkthrough
+-- Running On Maintenance --
 
+## MyOwnFuckinLive
+-- The only viewers is the writers --
