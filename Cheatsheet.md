@@ -1,3 +1,6 @@
+By Default this is not my own, This all information is collected from multiple resource which conducting for Active Directory Assessment & Penetration Testing
+
+
 # Initial Enumeration 
 
 | Command                                                      | Description                                                  |
