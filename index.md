@@ -8,7 +8,5 @@ Hi, My name is Muhamad Rifki, I am an security engineer who working for some ind
 
 
 ## Active Directory Pentesting
-[Initial Recon](./Cheatsheet1.md).
-[LLNMR / NTB Poisoning](./Cheatsheet2.md)
-[Password Spraying](./Cheatsheet3.md)
+[Resource & Cheatsheet](./Cheatsheet.md).
 
