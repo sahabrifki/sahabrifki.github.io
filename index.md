@@ -8,5 +8,23 @@ Hi, My name is Muhamad Rifki, I am an security engineer who working for some ind
 
 
 ## Active Directory Pentesting
-[Resource & Cheatsheet](./Cheatsheet.md).
+[Active Directory Pentest & Cheatsheet](./Cheatsheet.md).
+
+
+## Web Application Pentest
+
+
+## Reverse Engineering Mobile
+
+
+## Reverse Engineering Binary (BinEx)
+
+
+## Mobile Apps Pentesting
+
+
+## Learning Methodology
+
+
+## CTF Walkthrough
 
