@@ -42,7 +42,7 @@ ObjectDN               : CN=Dana Amundsen,OU=DevOps,OU=IT,OU=HQ-NYC,OU=Employees
 ObjectAceType          : 00299570-246d-11d0-a768-00aa006e0529
 
 # ObjectAceType with above value meaning for Force-change-password
-(https://learn.microsoft.com/id-id/windows/win32/adschema/r-user-force-change-password)
+#https://learn.microsoft.com/id-id/windows/win32/adschema/r-user-force-change-password
 ```
 
 
