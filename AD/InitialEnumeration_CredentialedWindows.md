@@ -5,8 +5,8 @@
 #Get Current Domain: 
 Get-Domain
 
-Enumerate Other Domains: 
-#Get-Domain -Domain <DomainName>
+#Enumerate Other Domains: 
+Get-Domain -Domain <DomainName>
 
 #Get Domain SID: 
 Get-DomainSIDGet Current Domain: Get-Domain
@@ -14,8 +14,8 @@ Get-DomainSIDGet Current Domain: Get-Domain
 #Enumerate Other Domains: 
 Get-Domain -Domain <DomainName>
 
-Get Domain SID: 
-#Get-DomainSID
+#Get Domain SID: 
+Get-DomainSID
 ```
 
 **Get Domain Policy:**
