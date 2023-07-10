@@ -46,7 +46,8 @@ ObjectAceType          : 00299570-246d-11d0-a768-00aa006e0529
 
 
 #### Using -ResolveGUIDs Flag
-````Import-Module .\PowerView.ps1
+```powershell
+Import-Module .\PowerView.ps1
 $sid = Convert-NameToSid wley
 Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $sid}
 
@@ -54,14 +55,14 @@ Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $si
 ObjectDN               : CN=Dana Amundsen,OU=DevOps,OU=IT,OU=HQ-NYC,OU=Employees,OU=Corp,DC=INLANEFREIGHT,DC=LOCAL
 ActiveDirectoryRights  : ExtendedRight
 ObjectAceType          : User-Force-Change-Password
-````
+```
 
 #### Enumerate All User
-````
+```powershell
 Get-ADUser -Filter * | Select-Object -ExpandProperty SamAccountName > ad_users.txt
 foreach($line in [System.IO.File]::ReadLines("C:\Users\htb-student\Desktop\ad_users.txt")) {get-acl  "AD:\$(Get-ADUser $line)" | Select-Object Path -ExpandProperty Access | Where-Object {$_.IdentityReference -match 'INLANEFREIGHT\\wley'}}
 
-````
+```
 
 ### Abusing Force Change Password
 **changing wley password without knowing his old password**
@@ -90,14 +91,6 @@ Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $si
 AceType               : AccessAllowed
 ObjectDN              : CN=Help Desk Level 1,OU=Security Groups,OU=Corp,DC=INLANEFREIGHT,DC=LOCAL
 ActiveDirectoryRights : ListChildren, ReadProperty, GenericWrite
-*Now we can see that our user damundsen has GenericWrite privileges over the Help Desk Level 1 group.
-
-Untuk Cek Grup member : Get-DomainGroup -Identity "Help Desk Level 1" | select memberof
-
-Investigasi Group yang bisa di exploit generic write, dalam kasus ini grup help desk level 1.
-yang mana grup help desk level 1 ini di bawah grup Information Technology
-Artinya, jika kita exploit, kita jadi member di Information Technology Juga. Jadi check privileges dari grup Information teknologi bisa ngapain
-
-Enumerate Otomatis Pake bloodhound aja, Baca di HTB Academy Section ACL
+*Now we can see that our user damundsen has GenericWrite privileges over the Help Desk Level 1 group. and with 
 
 ```
