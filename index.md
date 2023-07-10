@@ -8,7 +8,7 @@ Hi, My name is Muhamad Rifki, I am an security engineer who working for some ind
 
 
 ## Active Directory Pentesting
-[1. Initial Enumeration -Initial Enumeration From Linux](AD/InitialEnumeration_Uncredentialed.md)
+[1. Initial Enumeration -Initial Enumeration - Uncredentialed](AD/InitialEnumeration_Uncredentialed.md)
 
 
 ## Windows Privilege Escalation
