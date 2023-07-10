@@ -3,7 +3,7 @@
 
 ## CME - Domain User Enumeration
 
-~~~ bash
+```python
 
 Foresty@htb[/htb]$ sudo crackmapexec smb 172.16.5.5 -u forend -p Klmcargo2 --users
 
@@ -25,11 +25,11 @@ SMB         172.16.5.5      445    ACADEMY-EA-DC01  INLANEFREIGHT.LOCAL\htb-stud
 
 SMB         172.16.5.5      445    ACADEMY-EA-DC01  INLANEFREIGHT.LOCAL\avazquez
 
-~~~
+````
 
 ## CME - Domain Group Enumeration
 
-~~~ bash
+```python
 
 Foresty@htb[/htb]$ sudo crackmapexec smb 172.16.5.5 -u forend -p Klmcargo2 --groups
 
@@ -53,11 +53,11 @@ SMB         172.16.5.5      445    ACADEMY-EA-DC01  Replicator                  
 
 <SNIP>
 
-~~~
+```
 
 ## CME - Logged On Users
 
-~~~ bash
+```python
 
 Foresty@htb[/htb]$ sudo crackmapexec smb 172.16.5.130 -u forend -p Klmcargo2 --loggedon-users
 
@@ -74,12 +74,11 @@ SMB         172.16.5.130    445    ACADEMY-EA-FILE  INLANEFREIGHT\lab\_adm      
 SMB         172.16.5.130    445    ACADEMY-EA-FILE  INLANEFREIGHT\svc\_qualys                logon\_server: ACADEMY-EA-DC01
 
 SMB         172.16.5.130    445    ACADEMY-EA-FILE  INLANEFREIGHT\wley                      logon\_server: ACADEMY-EA-DC01
-
-~~~
+```
 
 ## Share Enumeration - Domain Controller
 
-~~~ bash
+```python
 
 Foresty@htb[/htb]$ sudo crackmapexec smb 172.16.5.5 -u forend -p Klmcargo2 --shares
 
@@ -100,11 +99,11 @@ SMB         172.16.5.5      445    ACADEMY-EA-DC01  User Shares     READ
 
 SMB         172.16.5.5      445    ACADEMY-EA-DC01  ZZZ\_archive     READ
 
-~~~
+```
 
 ## Spider\_plus
 
-~~~ bash
+```python
 
 Foresty@htb[/htb]$ sudo crackmapexec smb 172.16.5.5 -u forend -p Klmcargo2 -M spider\_plus --share 'Department Shares'
 
@@ -121,5 +120,5 @@ SPIDER\_P... 172.16.5.5      445    ACADEMY-EA-DC01  [\*]        EXT: ['ico', 'l
 SPIDER\_P... 172.16.5.5      445    ACADEMY-EA-DC01  [\*]       SIZE: 51200
 
 SPIDER\_P... 172.16.5.5      445    ACADEMY-EA-DC01  [\*]     OUTPUT: /tmp/cme\_spider\_plus
-
+```
 ~~~
