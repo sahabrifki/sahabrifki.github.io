@@ -8,11 +8,11 @@ Hi, My name is Muhamad Rifki, I am an security engineer who working for some ind
 
 
 ## Active Directory Pentesting
-[1. Initial Enumeration - Uncredentialed](AD/InitialEnumeration_Uncredentialed.md)
-[2. Initial Enumeration - Credentialed With Linux](AD/InitialEnumeration_CredentialedLinux.md)
-[3. Initial Enumeration - Credentialed With Windows](AD/InitialEnumeration_CredentialedWindows.md)
-[4. Kerberoasting - With Linux](AD/Kerberoasting_linux.md)
-[5. Kerberoasting - With Windows](AD/Kerberoasting_windows.md)
+[1. Initial Enumeration - Uncredentialed](./AD/InitialEnumeration_Uncredentialed.md)
+[2. Initial Enumeration - Credentialed With Linux](./AD/InitialEnumeration_CredentialedLinux.md)
+[3. Initial Enumeration - Credentialed With Windows](./AD/InitialEnumeration_CredentialedWindows.md)
+[4. Kerberoasting - With Linux](./AD/Kerberoasting_linux.md)
+[5. Kerberoasting - With Windows](./AD/Kerberoasting_windows.md)
 
 
 ## Windows Privilege Escalation
