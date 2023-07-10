@@ -8,6 +8,7 @@ Hi, My name is Muhamad Rifki, I am an security engineer who working for some ind
 
 
 ## Active Directory Pentesting
+[1. Initial Enumeration - External recon](./Active Directory Exploitation/ExternalRecon)
 [Active Directory Pentest & Cheatsheet](./Cheatsheet.md)
 
 ## Windows Privilege Escalation
