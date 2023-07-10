@@ -14,6 +14,7 @@ Hi, My name is Muhamad Rifki, I am an security engineer who working for some ind
 4. [Kerberoasting - With Linux](./AD/Kerberoasting_linux.md)
 5. [Kerberoasting - With Windows](./AD/Kerberoasting_windows.md)
 6. [ASREPROASTING - Doesn't Req Prereq auth](./AD/asrep_roasting.md)
+7. [ACL & ACE Enumeration](./AD/ACL.md)
 
 
 ## Windows Privilege Escalation
