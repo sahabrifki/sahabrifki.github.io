@@ -13,16 +13,16 @@ Some example Active Directory object security permissions are as follows. These 
 
 
 
-```bash
+```python
 	
-ForceChangePassword:  abused with Set-DomainUserPassword
-Add Members:  abused with Add-DomainGroupMember
-GenericAll:  abused with Set-DomainUserPassword or Add-DomainGroupMember
-GenericWrite:  abused with Set-DomainObject
-WriteOwner:  abused with Set-DomainObjectOwner
-WriteDACL:  abused with Add-DomainObjectACL
-AllExtendedRights:  abused with Set-DomainUserPassword or Add-DomainGroupMember
-Addself:  abused with Add-DomainGroupMember
+- ForceChangePassword:  abused with Set-DomainUserPassword
+- Add Members:  abused with Add-DomainGroupMember
+- GenericAll:  abused with Set-DomainUserPassword or Add-DomainGroupMember
+- GenericWrite:  abused with Set-DomainObject
+- WriteOwner:  abused with Set-DomainObjectOwner
+- WriteDACL:  abused with Add-DomainObjectACL
+- AllExtendedRights:  abused with Set-DomainUserPassword or Add-DomainGroupMember
+- Addself:  abused with Add-DomainGroupMember
 ```
 
 ## ACL Enumeration With Powerview
