@@ -1,4 +1,4 @@
-# 7. Initial Enumeration - Credentialed From Linux
+# Initial Enumeration - Credentialed From Linux
 
 
 **CME - Domain User Enumeration**
