@@ -1,4 +1,4 @@
-# 2. Initial Enumeration - Uncredentialed
+# Initial Enumeration - Uncredentialed
 
 
 1. **Enumerating Using NMAP**
