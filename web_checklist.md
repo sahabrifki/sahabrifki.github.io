@@ -1,3 +1,6 @@
+---
+layout: default
+---
 # Pentesting Web checklist
 
 ## Recon phase
