@@ -1,7 +1,7 @@
 # Initial Enumeration - Credentialed From Linux
 
 
-**CME - Domain User Enumeration**
+## CME - Domain User Enumeration
 
 ~~~ bash
 
@@ -27,7 +27,7 @@ SMB         172.16.5.5      445    ACADEMY-EA-DC01  INLANEFREIGHT.LOCAL\avazquez
 
 ~~~
 
-**CME - Domain Group Enumeration**
+## CME - Domain Group Enumeration
 
 ~~~ bash
 
@@ -53,25 +53,9 @@ SMB         172.16.5.5      445    ACADEMY-EA-DC01  Replicator                  
 
 <SNIP>
 
-SMB         172.16.5.5      445    ACADEMY-EA-DC01  Domain Admins                            membercount: 19
-
-SMB         172.16.5.5      445    ACADEMY-EA-DC01  Domain Users                             membercount: 0
-
-<SNIP>
-
-SMB         172.16.5.5      445    ACADEMY-EA-DC01  Contractors                              membercount: 138
-
-SMB         172.16.5.5      445    ACADEMY-EA-DC01  Accounting                               membercount: 15
-
-SMB         172.16.5.5      445    ACADEMY-EA-DC01  Engineering                              membercount: 19
-
-SMB         172.16.5.5      445    ACADEMY-EA-DC01  Executives                               membercount: 10
-
-SMB         172.16.5.5      445    ACADEMY-EA-DC01  Human Resources                          membercou
-
 ~~~
 
-**CME - Logged On Users**
+## CME - Logged On Users
 
 ~~~ bash
 
@@ -93,7 +77,7 @@ SMB         172.16.5.130    445    ACADEMY-EA-FILE  INLANEFREIGHT\wley          
 
 ~~~
 
-**Share Enumeration - Domain Controller**
+## Share Enumeration - Domain Controller
 
 ~~~ bash
 
@@ -105,11 +89,8 @@ SMB         172.16.5.5      445    ACADEMY-EA-DC01  [+] INLANEFREIGHT.LOCAL\fore
 
 SMB         172.16.5.5      445    ACADEMY-EA-DC01  [+] Enumerated shares
 
-SMB         172.16.5.5      445    ACADEMY-EA-DC01  Share           Permissions     Remark
 
-SMB         172.16.5.5      445    ACADEMY-EA-DC01  -----           -----------     ------
-
-SMB         172.16.5.5      445    ACADEMY-EA-DC01  ADMIN$                          Remote AdminSMB         172.16.5.5      445    ACADEMY-EA-DC01  C$                              Default shareSMB         172.16.5.5      445    ACADEMY-EA-DC01  Department Shares READ
+SMB         172.16.5.5      445    ACADEMY-EA-DC01  ADMIN$  Remote AdminSMB         172.16.5.5      445    ACADEMY-EA-DC01  C$ Default shareSMB         172.16.5.5      445    ACADEMY-EA-DC01  Department Shares READ
 
 SMB         172.16.5.5      445    ACADEMY-EA-DC01  IPC$            READ            Remote IPCSMB         172.16.5.5      445    ACADEMY-EA-DC01  NETLOGON        READ            Logon server share
 
@@ -121,7 +102,7 @@ SMB         172.16.5.5      445    ACADEMY-EA-DC01  ZZZ\_archive     READ
 
 ~~~
 
-**Spider\_plus**
+## Spider\_plus
 
 ~~~ bash
 
