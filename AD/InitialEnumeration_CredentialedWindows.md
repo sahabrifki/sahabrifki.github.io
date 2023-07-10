@@ -1,5 +1,5 @@
 # Credentialed Enumeration - From Windows Using PowerView
-- Current Domain
+### Current Domain
 
 ```bash
 #Get Current Domain: 
@@ -18,7 +18,7 @@ Get Domain SID:
 #Get-DomainSID
 ```
 
-- **Get Domain Policy:**
+**Get Domain Policy:**
 
 ```bash
 Get-DomainPolicy
@@ -28,14 +28,14 @@ Get-DomainPolicy | Select-Object -ExpandProperty SystemAccess
 Get-DomainPolicy | Select-Object -ExpandProperty KerberosPolicy
 ```
 
-- **Get Domain Controllers:**
+**Get Domain Controllers:**
 
 ```bash
 Get-DomainController
 Get-DomainController -Domain <DomainName>
 ```
 
-- **Enumerate Domain Users:**
+**Enumerate Domain Users:**
 
 ```bash
 #Save all Domain Users to a file
@@ -54,7 +54,7 @@ Get-NetSession -ComputerName <ComputerName>
 Find-DomainUserLocation -Domain <DomainName> | Select-Object UserName, SessionFromName
 ```
 
-- **Enum Domain Computers:**
+**Enum Domain Computers:**
 
 ```bash
 Get-DomainComputer -Properties OperatingSystem, Name, DnsHostName | Sort-Object -Property DnsHostName
@@ -63,7 +63,7 @@ Get-DomainComputer -Properties OperatingSystem, Name, DnsHostName | Sort-Object 
 Get-DomainComputer -Ping -Properties OperatingSystem, Name, DnsHostName | Sort-Object -Property DnsHostName
 ```
 
-- **Enum Groups and Group Members**
+**Enum Groups and Group Members**
 
 ```bash
 #Save all Domain Groups to a file:
@@ -83,7 +83,7 @@ Get-NetLocalGroupMember -GroupName Administrators | Select-Object MemberName, Is
 Get-DomainGPOLocalGroup | Select-Object GPODisplayName, GroupName
 ```
 
-- **Enum Domain Computers:**
+**Enum Domain Computers:**
 
 ```bash
 Get-DomainComputer -Properties OperatingSystem, Name, DnsHostName | Sort-Object -Property DnsHostName
@@ -92,7 +92,7 @@ Get-DomainComputer -Properties OperatingSystem, Name, DnsHostName | Sort-Object 
 Get-DomainComputer -Ping -Properties OperatingSystem, Name, DnsHostName | Sort-Object -Property DnsHostName
 ```
 
-- **Enumerate Shares:**
+**Enumerate Shares:**
 
 ```bash
 #Enumerate Domain Shares
@@ -105,7 +105,7 @@ Find-DomainShare -CheckShareAccess
 Find-InterestingDomainShareFile -Include *passwords*
 ```
 
-- **Enum Group Policies:**
+**Enum Group Policies:**
 
 ```bash
 Get-DomainGPO -Properties DisplayName | Sort-Object -Property DisplayName
@@ -117,7 +117,7 @@ Get-DomainGPO -ComputerIdentity <ComputerName> -Properties DisplayName | Sort-Ob
 Get-DomainGPOComputerLocalGroupMapping -ComputerName <ComputerName>
 ```
 
-- **Enum ACLs:**
+### Enum ACLs
 
 ```bash
 # Returns the ACLs associated with the specified account
@@ -130,7 +130,7 @@ Find-InterestingDomainAcl -ResolveGUIDs
 Get-PathAcl -Path "\\Path\Of\A\Share"
 ```
 
-- **User Hunting:**
+### User Hunting
 
 ```bash
 #Finds all machines on the current domain where the current user has local admin access
@@ -146,7 +146,7 @@ Find-DomainUserLocation | Select-Object UserName, SessionFromName
 Test-AdminAccess
 ```
 
-Kerberoasting
+### Kerberoasting
 
 ```bash
 #Get User Accounts that are used as Service Accounts
