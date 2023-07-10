@@ -13,6 +13,7 @@ Hi, My name is Muhamad Rifki, I am an security engineer who working for some ind
 3. [Initial Enumeration - Credentialed With Windows](./AD/InitialEnumeration_CredentialedWindows.md)
 4. [Kerberoasting - With Linux](./AD/Kerberoasting_linux.md)
 5. [Kerberoasting - With Windows](./AD/Kerberoasting_windows.md)
+6. [ASREPROASTING - Doesn't Req Prereq auth](./AD/asrep_roasting.md)
 
 
 ## Windows Privilege Escalation
