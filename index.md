@@ -8,8 +8,8 @@ Hi, My name is Muhamad Rifki, I am an security engineer who working for some ind
 
 
 ## Active Directory Pentesting
-[1. Initial Enumeration - External recon](./Active Directory Exploitation/ExternalRecon)
-[2. Initial Enumeration - Initial Recon](./Active Directory Exploitation/InitialRecon)
+[1. Initial Enumeration - External recon](/Active\/Directory\/Exploitation\/ExternalRecon/n)
+[2. Initial Enumeration - Initial Recon](/Active\/Directory\/Exploitation\/InitialRecon/n)
 [Active Directory Pentest & Cheatsheet](./Cheatsheet.md)
 
 ## Windows Privilege Escalation
